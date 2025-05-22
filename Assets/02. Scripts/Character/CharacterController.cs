@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class CharacterController : MonoBehaviour
 {
     private Rigidbody rb;
