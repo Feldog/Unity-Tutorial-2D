@@ -9,7 +9,7 @@ public class StudyGameObject : MonoBehaviour
     public Quaternion rot;
 
     private GameObject obj;
-    void Start()
+    void Awake()
     {
         CreateCharacter();
     }
@@ -22,6 +22,5 @@ public class StudyGameObject : MonoBehaviour
         obj = Instantiate(prefab, pos, rot);
         obj.name = "Mokujin";
 
-        Debug.Log(obj.transform.childCount);
     }
 }

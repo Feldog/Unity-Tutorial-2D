@@ -9,6 +9,9 @@ public class CharacterController : MonoBehaviour
     public float moveX;
     public float moveY;
 
+    private Vector3 dir;
+    private Vector3 normalDir;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -17,15 +20,17 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveX = Input.GetAxis("Horizontal");
-        moveY = Input.GetAxis("Vertical");
+        moveX = Input.GetAxisRaw("Horizontal");
+        moveY = Input.GetAxisRaw("Vertical");
+
+        transform.LookAt(rb.position + dir);
     }
 
     void FixedUpdate()
     {
-        Vector3 movement = new Vector3(moveX, 0, moveY);
-        movement.Normalize();
+        dir = new Vector3(moveX, 0, moveY);
+        normalDir = dir.normalized;
 
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + normalDir * moveSpeed * Time.fixedDeltaTime);
     }
 }
